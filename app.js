@@ -14,6 +14,11 @@ const PORT = 5001 || process.env.PORT;
 
 //connect to databas
 connectDB();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
 //creating a folder for storing public items
 app.use(express.static('public'));
 
@@ -27,6 +32,7 @@ app.set('view engine', 'ejs');
 
 
 app.use('/', require('./server/routes/main'));
+app.use('/', require('./server/routes/admin'));
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
